@@ -1,0 +1,30 @@
+[x] barra de tempo para bolha
+[x] Marcação CheckinPoint
+[x] Efeito de pulo do player
+[X] Efeito de neve
+[X] Efeito Power 1 - explosão
+[X] Tutorial Power 1
+[X] Efeito Power 2
+[X] Tutorial Power 2
+[x] Transição fim de jogo
+[X] Efeito cair
+[X] Polir platforma que cai
+[X] Walk
+[X] Jump
+[X] Fall
+[X] Coletar Poder
+[X] Create Bubble
+[X] Explose bubble
+[X] Espinho
+[X] CheckinPoint
+[x] Plus Bubble
+[X] Adicionar musica de fundo
+[X] Platform Fall
+
+-- A fazer --
+	-- Lançamento --
+	[] Cover pro itch.io
+	[] Criar a pagina
+		[] Creditos
+	[] Publicar no X
+

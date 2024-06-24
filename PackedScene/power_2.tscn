@@ -1,0 +1,113 @@
+[gd_scene load_steps=12 format=3 uid="uid://b3sxosmd0r3sn"]
+
+[ext_resource type="Texture2D" uid="uid://bwdk3dt1r5x3i" path="res://Art/spritesheet.png" id="1_6q6jf"]
+[ext_resource type="Script" path="res://Script/power_2.gd" id="1_jfb3r"]
+[ext_resource type="Shader" path="res://Script/Shaders/power.gdshader" id="1_qh5rl"]
+[ext_resource type="AudioStream" uid="uid://bfnil677bucwi" path="res://Audio/Power Up.wav" id="4_toni8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1usre"]
+shader = ExtResource("1_qh5rl")
+shader_parameter/height = 1.0
+shader_parameter/frequency = 15.0
+shader_parameter/speed = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_trhvx"]
+shader = ExtResource("1_qh5rl")
+shader_parameter/height = 1.0
+shader_parameter/frequency = 15.0
+shader_parameter/speed = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtn8k"]
+size = Vector2(8, 6)
+
+[sub_resource type="Animation" id="Animation_tx6vb"]
+resource_name = "Collect"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"self_destroy_master"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_m56y6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ndw6m"]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p0bq6"]
+_data = {
+"Collect": SubResource("Animation_tx6vb"),
+"RESET": SubResource("Animation_m56y6"),
+"idle": SubResource("Animation_ndw6m")
+}
+
+[node name="Power2" type="Area2D" groups=["Power2"]]
+material = SubResource("ShaderMaterial_1usre")
+collision_layer = 8
+script = ExtResource("1_jfb3r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+material = SubResource("ShaderMaterial_trhvx")
+texture = ExtResource("1_6q6jf")
+region_enabled = true
+region_rect = Rect2(64, 0, 8, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_mtn8k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p0bq6")
+}
+
+[node name="PowerSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_toni8")

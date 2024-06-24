@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnty5hoday60o"]
+
+[ext_resource type="Texture2D" uid="uid://bwdk3dt1r5x3i" path="res://Art/spritesheet.png" id="1_irypn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kv1ma"]
+size = Vector2(5, 5)
+
+[node name="Spike" type="Area2D" groups=["Spike"]]
+collision_layer = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_irypn")
+region_enabled = true
+region_rect = Rect2(32, 0, 8, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 1.5)
+shape = SubResource("RectangleShape2D_kv1ma")
